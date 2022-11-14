@@ -1,0 +1,28 @@
+.button {
+    cursor: pointer;
+    font: inherit;
+    border: none;
+    background-color: #2DE370;
+    color: black;
+    padding: .75rem 1.2rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 25px;
+    font-weight: bold;
+    margin-right: 2vw;
+    margin-left: 1vw;
+}
+
+.button:hover,
+
+.button:active{
+    background-color: #0BC355;
+}
+
+.icon {
+    width: 1 rem;
+    height: 1 rem;
+    margin-right:0.5;
+}
+

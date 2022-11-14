@@ -1,42 +1,6 @@
 {
   "_format": "hh-sol-cache-2",
   "files": {
-    "/Users/16036diego/Desktop/Desktop/Software-Development/Blockchain/LRC/contracts/Staking.sol": {
-      "lastModificationDate": 1667783386013,
-      "contentHash": "c5b8ac7cf0299a6044d9c5d5cdfeabdb",
-      "sourceName": "contracts/Staking.sol",
-      "solcConfig": {
-        "version": "0.8.0",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "IERC20",
-        "Staking"
-      ]
-    },
     "/Users/16036diego/Desktop/Desktop/Software-Development/Blockchain/LRC/contracts/HashbackToken.sol": {
       "lastModificationDate": 1667755038893,
       "contentHash": "ade6754ae6606bfec1058a5d2189bc53",
@@ -113,6 +77,41 @@
         "ERC20"
       ]
     },
+    "/Users/16036diego/Desktop/Desktop/Software-Development/Blockchain/LRC/node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+      "lastModificationDate": 1667748594967,
+      "contentHash": "ad7c2d0af148c8f9f097d65deeb4da6b",
+      "sourceName": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IERC20"
+      ]
+    },
     "/Users/16036diego/Desktop/Desktop/Software-Development/Blockchain/LRC/node_modules/@openzeppelin/contracts/utils/Context.sol": {
       "lastModificationDate": 1667748593701,
       "contentHash": "5f2c5c4b6af2dd4551027144797bc8be",
@@ -185,10 +184,10 @@
         "IERC20Metadata"
       ]
     },
-    "/Users/16036diego/Desktop/Desktop/Software-Development/Blockchain/LRC/node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": {
-      "lastModificationDate": 1667748594967,
-      "contentHash": "ad7c2d0af148c8f9f097d65deeb4da6b",
-      "sourceName": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+    "/Users/16036diego/Desktop/Desktop/Software-Development/Blockchain/LRC/contracts/Staking.sol": {
+      "lastModificationDate": 1668202226076,
+      "contentHash": "886ea2507824e8328e6b6f56f7acfda2",
+      "sourceName": "contracts/Staking.sol",
       "solcConfig": {
         "version": "0.8.0",
         "settings": {
@@ -217,7 +216,8 @@
         "^0.8.0"
       ],
       "artifacts": [
-        "IERC20"
+        "IERC20",
+        "Staking"
       ]
     }
   }

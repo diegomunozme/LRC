@@ -1,0 +1,121 @@
+.stakingCard {
+  border-width: 1px;
+  border-style: solid;
+  border-image: initial;
+  border-color: #32373c;
+  border-bottom: none;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+  word-wrap: break-word;
+}
+
+.cardContent {
+  display: grid;
+  grid-gap: var(--lr-space-4);
+  grid-template-columns: 1fr auto auto;
+  padding: 1rem;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+.cardHeader {
+  color: #bec5cb;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  word-wrap: break-word;
+  display: block;
+  padding: 0.25rem;
+}
+
+.cardSubHeader {
+  color: #bec5cb;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+  word-wrap: break-word;
+  display: block;
+  padding: 0.25rem;
+}
+
+.cardButton {
+  display: inline-flex;
+  appearance: none;
+  -webkit-box-align: center;
+  align-items: center;
+
+  -webkit-box-pack: center;
+  justify-content: center;
+  user-select: none;
+  position: relative;
+  white-space: nowrap;
+  vertical-align: middle;
+  outline-offset: 2px;
+  line-height: 1.2;
+  font-weight: 600;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  transition-property: background-color, border-color, color, fill, stroke,
+    opacity, box-shadow, transform;
+  transition-duration: 200ms;
+  background-color: #32373c;
+  color: #2de370;
+  height: 3rem;
+  min-width: 3rem;
+  font-size: 0.875rem;
+  padding-inline-start: 2rem;
+  padding-inline-end: 2rem;
+  width: 100%;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  outline: transparent solid 2px;
+  border-width: 1px;
+  border-color: transparent;
+}
+
+.stakingInputs {
+  display: block;
+  user-select: none;
+  position: relative;
+  outline-offset: 2px;
+  line-height: 1.2;
+  font-weight: 900;
+  transition-property: background-color, border-color, color, fill, stroke,
+    opacity, box-shadow, transform;
+  transition-duration: 200ms;
+  background-color: #32373c;
+  color: #2de370;
+  height: auto;
+  min-width: 3rem;
+  font-size: 0.875rem;
+  padding-inline-start: 2rem;
+  padding-inline-end: 2rem;
+  width: 100%;
+  outline: transparent solid 2px;
+  border-width: 1px;
+  border-color: transparent;
+}
+.displayRewards {
+  display: block;
+  user-select: none;
+  position: relative;
+  outline-offset: 2px;
+  line-height: 1.2;
+  font-weight: 900;
+  transition-property: background-color, border-color, color, fill, stroke,
+    opacity, box-shadow, transform;
+  transition-duration: 200ms;
+  background-color: #32373c;
+  color: #2de370;
+  height: auto;
+  min-width: 3rem;
+  font-size: 0.875rem;
+  padding-inline-start: 2rem;
+  padding-inline-end: 2rem;
+  width: 100%;
+  outline: transparent solid 2px;
+  border-width: 1px;
+  border-color: transparent;
+}

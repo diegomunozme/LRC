@@ -1,0 +1,110 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  background: #46564c84;
+  /* #68d39122; */
+  /* #583a88bd; */
+  /* opacity: 80%; */
+}
+
+@media screen and (min-width: 50rem) {
+  .modal {
+    position: fixed;
+    outline: transparent solid 2px;
+    width: 750px;
+    max-width: 800px;
+    z-index: 14000;
+    overflow: hidden;
+    opacity: none;
+    transition: .5s;
+    color: white;
+    background-color: #343a3f;
+  }
+}
+
+.header {
+  padding: 1rem;
+  text-align: center;
+}
+
+.content {
+  padding: 1rem;
+}
+
+
+@media (min-width: 768px) {
+  .modal {
+    left: calc(31% - 20rem);
+    top: 5px;
+    width: 40rem;
+  }
+}
+
+.productsBox {
+  padding-inline-start: 2.5%;
+  padding-inline-end: 2.5%;
+  padding-bottom: 5ch;
+  padding-top: 1ch;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.Container{
+  box-shadow: var(0 4px 8px rgba(0,0,0,.38));
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  border: solid;
+  border-width: 1px;
+  border-radius: 15px;
+  border-color: #7b7e7f48;
+  /* padding-inline-start: 5%;
+  padding-inline-end: 5%; */
+  padding: 5%;
+}
+
+.Container:hover {
+  opacity: 1;
+  background-color: #272d31;
+  cursor: pointer;
+  transition: .25s;
+  transform:  scale(1.025);
+  translate: 0 -2px;
+
+}
+
+.Circle {
+  height: 100%;
+  width:100%;
+  border-radius: 15px;
+  background-color: #f5fbfd;
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  display: flex;
+}
+
+.Image {
+  height: 100%;
+  width: 100%;
+  border-radius: 15px;
+  overflow: hidden;
+  display: block;
+  overflow: hidden;
+  object-fit: contain;
+  }
+
+  .productText {
+    padding-left: 5px;
+    font-weight: 600;
+}
+.productDesc {
+  padding-left: 10px;
+  font-weight: 600;
+  color: #68d391;
+}

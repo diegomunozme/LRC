@@ -1,0 +1,13 @@
+.container {
+    border-top: solid;
+    border-radius: 1px;
+    border-color:  azure;
+    height:30vh;
+    position: absolute;
+    display: grid;
+    grid-template-columns: .5fr .5fr .5fr;
+    z-index: 1;
+    width: 100%;
+    color:white;
+    background-color: #121619 
+}

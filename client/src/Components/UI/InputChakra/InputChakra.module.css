@@ -1,0 +1,10 @@
+.searchBar{
+    background-color: #343a3f;
+    border-radius: 46px;
+    opacity: 50%;
+    height:auto;
+    border-color: #00000000;
+  }
+  .searchBar:hover{
+    cursor: pointer;
+  };

@@ -1,0 +1,30 @@
+.button {
+    cursor: pointer;
+    font: inherit;
+    border: none;
+    background-color: #121619;
+    color: white;
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 5px;
+    font-weight: bold;
+    margin: 5px;
+}
+
+.button:hover,
+
+.button:active{
+    background-color: #272d31;
+    transition-duration: .1s;
+    border-bottom-style: solid;
+    border-width: 1px;
+    border-color: white;
+}
+
+.icon {
+    width: 1 rem;
+    height: 1 rem;
+    margin-right:0.5;
+}

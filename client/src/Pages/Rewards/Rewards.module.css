@@ -1,0 +1,114 @@
+* {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.secondaryHeader {
+  font-size: 3rem;
+  justify-content: center;
+}
+
+.rewardsWrapper {
+  border-bottom: 1px solid white;
+}
+.customCard {
+  font-size: 1rem;
+  margin-bottom: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  border: solid 1px;
+  background-color: transparent;
+  border-color: #32373c;
+  /* background-color:  rgba(255, 255, 255, 0.94); */
+  /* padding: 5px; */
+  border-radius: 15px;
+}
+
+.customCard:hover,
+.customCard:active {
+  background-color: #272d31;
+  transition-duration: 0.1s;
+}
+
+/* Style the content */
+.contentTop {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding-left: 2vw;
+  margin:.5vw;
+  border-bottom:  1px solid #FFFFFF29;
+  padding: 10px;
+  height: 50vh; /* Should be removed. Only for demonstration */
+  color: white;
+  font-size: 2rem;
+}
+
+.buyLooksButton{
+  width: 16vw;
+  font-size:large;
+  border-radius: 10px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: chartreuse;
+  padding: .75rem;
+  cursor: pointer;
+  color: chartreuse;
+}
+
+.buyLooksButton:hover{
+  opacity: .3;
+}
+
+.buyLooksButton:active{
+  border-color: aliceblue;
+
+  opacity: 1;
+}
+
+
+.contentBottom {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin-left: 5vw;
+  border-color: azure;
+  border-bottom: 1px;
+  /* border-bottom:  5px solid red; */
+  padding: 10px;
+  height: 50vh; /* Should be removed. Only for demonstration */
+  color: white;
+  font-size: 2rem;
+}
+
+.text {
+    font-size: 5rem;
+  text-align: left;
+  background: linear-gradient(
+     /* from left, */
+    #fff 20%,
+    rgb(0, 255, 166) 40%,
+    rgb(0, 255, 51) 60%,    
+    #fff 80%
+  );
+  color: #000;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation: shine 1s linear infinite;
+  @keyframes shine {
+    to {
+      background-position: 200%;
+    }
+  }
+}

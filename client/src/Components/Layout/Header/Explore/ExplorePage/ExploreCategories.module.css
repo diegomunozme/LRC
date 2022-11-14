@@ -1,0 +1,52 @@
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 1000;
+    background: #583a88bd;
+    /* opacity: 80%; */
+  }
+
+
+  .modal {
+    position: fixed;
+    top: 20vh;
+    left: 10%;
+    width: 80%;
+    z-index: 10000;
+    overflow: hidden;
+    opacity: none;
+    transition: opacity .25s ease
+    transform .25s;
+    color: white;
+    background-color: #343a3f;
+  }
+  
+  .header {
+    background: #4f005f;
+    padding: 1rem;
+  }
+  
+  .header h2 {
+    margin: 0;
+    color: white;
+  }
+  
+  .content {
+    padding: 1rem;
+  }
+  
+  .actions {
+    padding: 1rem;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  @media (min-width: 768px) {
+    .modal {
+      left: calc(50% - 20rem);
+      width: 40rem;
+    }
+  }

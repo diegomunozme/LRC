@@ -8,9 +8,9 @@ async function main() {
     npx hardhat node // to initialize the local ethereum network
     npx hardhat run --network localhost scripts/deploy.js // run this in a new console window
     */
-  [owner, hashbackAddress] = await ethers.getSigners();
+  [owner] = await ethers.getSigners();
 
-  HBT = await ethers.getContractFactory("HashBackToken", hashbackAddress);
+  HBT = await ethers.getContractFactory("HashBackToken", owner);
   hbt = await HBT.deploy();
   Staking = await ethers.getContractFactory("Staking", owner);
   staking = await Staking.deploy(hbt.address);
@@ -24,8 +24,8 @@ async function main() {
     hbt.address
   );
 
-  await hbt.connect(hashbackAddress).approve(staking.address, ethers.utils.parseEther("1"));
-  await staking.connect(hashbackAddress).stake(ethers.utils.parseEther("1"));
+  await hbt.connect(owner).approve(staking.address, ethers.utils.parseEther("1"));
+  await staking.connect(owner).stake(ethers.utils.parseEther("1"));
   const provider = waffle.provider;
   const block = await provider.getBlock();
   const newCreatedDate = block.timestamp - 86400 * 365;

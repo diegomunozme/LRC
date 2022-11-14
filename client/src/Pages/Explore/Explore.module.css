@@ -1,0 +1,81 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.exploreMainContent {
+  height: 100%;
+  color: white;
+  background-image: linear-gradient(180deg, rgb(38, 37, 37, .8),  rgba(0, 0, 0, 1));
+}
+
+.exploreTitle {
+  font-size: 4vh;
+  padding-bottom: 5vh;
+  text-align: center;
+}
+
+.productsBox {
+  padding-inline-start: 2.5%;
+  padding-inline-end: 2.5%;
+  padding-bottom: 5ch;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.Container{
+  transform: translateY(0);
+  box-shadow: var(0 4px 8px rgba(0,0,0,.38));
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  border: solid;
+  border-width: 1px;
+  border-radius: 15px;
+  border-color:  rgba(240, 255, 255, 0.64);
+  /* padding-inline-start: 5%;
+  padding-inline-end: 5%; */
+  padding: 5%;
+}
+
+.Container:hover {
+  opacity: 1;
+  background-color: #272d31;
+  cursor: pointer;
+  transition: .25s;
+  transform:  scale(1.025);
+  translate: 0 -5px;
+
+}
+
+.Circle {
+  height: 100%;
+  width:100%;
+  border-radius: 15px;
+  background-color: #f5fbfd;
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  display: flex;
+}
+
+.Image {
+  height: 100%;
+  width: 100%;
+  border-radius: 15px;
+  overflow: hidden;
+  display: block;
+  overflow: hidden;
+  object-fit: contain;
+}
+
+.productText {
+  padding-left: 10px;
+  font-weight: 600;
+}
+.productDesc {
+  padding-left: 10px;
+  font-weight: 600;
+  color: #68d391;
+}

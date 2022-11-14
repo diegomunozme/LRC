@@ -21,6 +21,9 @@ contract Staking {
     // User address => rewards to be claimed
     mapping(address => uint) public rewards;
 
+    //Tokens Staked per User
+    mapping(address => uint) public tokensStaked;
+
     // Total staked
     uint public totalSupply;
     // User address => staked amount
@@ -67,6 +70,7 @@ contract Staking {
         require(_amount > 0, "amount = 0");
         HashBackToken.transferFrom(msg.sender, address(this), _amount);
         balanceOf[msg.sender] += _amount;
+        tokensStaked[msg.sender] +=_amount;
         totalSupply += _amount;
     }
 

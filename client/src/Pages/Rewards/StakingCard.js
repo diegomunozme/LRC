@@ -24,9 +24,14 @@ const StakingCard = (props) => {
       ) : (
         <>
           <div className={classes.stakingInputs}>
+            <div>
             <h1 style={{ fontSize: ".75", padding: "1rem", color: "#4D5358" }}>
+              Current Address: {props.signerAddress}
+              </h1>
+              <h1 style={{ fontSize: ".75", padding: "1rem", color: "#4D5358" }}>
               Your Stake: {props.amount}
             </h1>
+            </div>
             <div style={{ display: "flex", padding: "1rem" }}>
               <Input
                 value={props.amount}

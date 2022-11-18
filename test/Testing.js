@@ -1,5 +1,4 @@
 const { expect } = require("chai");
-const { consoleOrigin } = require("firebase-tools/lib/api");
 const { ethers } = require("hardhat");
 
 describe("Staking", function () {
@@ -60,16 +59,11 @@ describe("Staking", function () {
         "Tokens staked after withdrawing",
         await hbt.balanceOf(signer3.address)
       );
-
-      const tblock = await provider.getBlock(receipt.blockNumber);
-      console.log("Block Number: ", tblock.timestamp);
-      const block = await provider.getBlock();
-      const newCreatedDate = block.timestamp - 86400 * 365;
-      await block.advanceTime(newCreatedDate)
-      console.log("newCreatedDate: ", newCreatedDate);
-
-      // Now lets manipulate the time the persons been staking the tokens
-      // and check out the rewards
     });
+  });
+  it("Position Functionality", async () => {
+    const provider = waffle.provider;
+    position = await staking.positions(signer3.address);
+    console.log("Position", position);
   });
 });

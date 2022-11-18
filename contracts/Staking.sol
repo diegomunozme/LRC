@@ -4,10 +4,29 @@ pragma solidity ^0.8.0;
 contract Staking {
     IERC20 public immutable HashBackToken;
 
+    struct Position {
+        address walletAddress;
+        uint createdDate;
+        uint rewardsPerTokenStored;
+        uint stakedAmount;
+        bool open;
+    }
+
+    Position position;
+
     address public owner;
+
+    uint public currentPositionId;
+
+    mapping(address => Position) public positions;
+
+    mapping(address => uint[]) public positionIdsByAddress;
+
+    mapping(address => uint[]) positonIdsByAddress;
 
     // Duration of rewards to be paid out (in seconds)
     uint public duration;
+
     // Timestamp of when the rewards finish
     uint public finishAt;
     // Minimum of last updated time and reward finish time
@@ -30,6 +49,8 @@ contract Staking {
     mapping(address => uint) public balanceOf;
 
     constructor(address _HashBackToken) {
+        currentPositionId = 0;
+
         owner = msg.sender;
         HashBackToken = IERC20(_HashBackToken);
     }
@@ -43,6 +64,8 @@ contract Staking {
         rewardPerTokenStored = rewardPerToken();
         updatedAt = lastTimeRewardApplicable();
 
+        positions[_account].rewardsPerTokenStored = rewardPerTokenStored;
+
         if (_account != address(0)) {
             rewards[_account] = earned(_account);
             userRewardPerTokenPaid[_account] = rewardPerTokenStored;
@@ -53,6 +76,18 @@ contract Staking {
 
     function lastTimeRewardApplicable() public view returns (uint) {
         return _min(finishAt, block.timestamp);
+    }
+
+    function getPositionIdsForAddress() external view returns (uint[] memory) {
+        return positionIdsByAddress[msg.sender];
+    }
+
+    function getPositionById(address _account)
+        external
+        view
+        returns (Position memory)
+    {
+        return positions[_account];
     }
 
     function rewardPerToken() public view returns (uint) {
@@ -70,8 +105,15 @@ contract Staking {
         require(_amount > 0, "amount = 0");
         HashBackToken.transferFrom(msg.sender, address(this), _amount);
         balanceOf[msg.sender] += _amount;
-        tokensStaked[msg.sender] +=_amount;
+        positions[msg.sender] = Position(
+            msg.sender,
+            block.timestamp,
+            rewardPerTokenStored,
+            _amount,
+            true
+        );
         totalSupply += _amount;
+        currentPositionId += 1;
     }
 
     function withdraw(uint _amount) external updateReward(msg.sender) {
@@ -79,6 +121,10 @@ contract Staking {
         balanceOf[msg.sender] -= _amount;
         totalSupply -= _amount;
         HashBackToken.transfer(msg.sender, _amount);
+        positions[msg.sender].stakedAmount - _amount;
+        if (positions[msg.sender].stakedAmount == 0) {
+            positions[msg.sender].open = false;
+        }
     }
 
     function earned(address _account) public view returns (uint) {

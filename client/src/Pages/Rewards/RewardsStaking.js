@@ -74,6 +74,8 @@ const RewardsStaking = () => {
   const stake = async () => {
     await hbtContract.connect(signer).approve(contract.address, amount);
     contract.connect(signer).stake(amount);
+    console.log("Signer Address", signer.address)
+    console.log("staked Amount: ", await hbtContract.balanceOf(signer.address))
     setAmount(0);
   };
 

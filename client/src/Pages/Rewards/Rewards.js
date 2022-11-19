@@ -9,7 +9,7 @@ import RegisterForAirdrop from "../../Components/Layout/RegisterForAirdrop/Regis
 
 const Rewards = () => {
   const [blockchain, setBlockchain] = useState(false);
-  //   //Logic for displaying Modules
+  // //   //Logic for displaying Modules
   const handleSetBlockchain = (e) => {
     e.preventDefault();
     setBlockchain(true);
@@ -34,7 +34,9 @@ const Rewards = () => {
             Register for HBT Airdrop
           </div>
         </div>
-        <BlockchainSVG />
+        <div style={{ zindex: "-1000" }}>
+          <BlockchainSVG width="90%" />
+        </div>
       </div>
       <RewardsStaking />
     </div>

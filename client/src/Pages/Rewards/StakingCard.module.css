@@ -118,4 +118,15 @@
   outline: transparent solid 2px;
   border-width: 1px;
   border-color: transparent;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+.displayStaking {
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  padding-top: 0.3rem;
+  color: #4d5358;
 }

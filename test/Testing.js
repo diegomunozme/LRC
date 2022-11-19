@@ -45,6 +45,8 @@ describe("Staking", function () {
       await hbt.connect(signer3).approve(staking.address, 40);
       const transaction = await staking.connect(signer3).stake(40);
       const receipt = await transaction.wait();
+      const staked = await staking.balanceOf(signer3.address);
+      console.log("total staked by account 3: ", staked);
 
       const signerBalancePostStake = await hbt.balanceOf(signer3.address);
 

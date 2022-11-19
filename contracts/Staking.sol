@@ -5,6 +5,7 @@ contract Staking {
     IERC20 public immutable HashBackToken;
 
     struct Position {
+        //isnt needed, will be deleted later
         address walletAddress;
         uint createdDate;
         uint rewardsPerTokenStored;
@@ -31,8 +32,11 @@ contract Staking {
     uint public finishAt;
     // Minimum of last updated time and reward finish time
     uint public updatedAt;
+
+    //from documentation, may delete later
+    uint public lastUpdateTime;
     // Reward to be paid out per second
-    uint public rewardRate;
+    uint public rewardRate = 100;
     // Sum of (reward rate * dt * 1e18 / total supply)
     uint public rewardPerTokenStored;
     // User address => rewardPerTokenStored
@@ -44,13 +48,12 @@ contract Staking {
     mapping(address => uint) public tokensStaked;
 
     // Total staked
-    uint public totalSupply;
+    uint private totalSupply;
     // User address => staked amount
     mapping(address => uint) public balanceOf;
 
     constructor(address _HashBackToken) {
         currentPositionId = 0;
-
         owner = msg.sender;
         HashBackToken = IERC20(_HashBackToken);
     }
@@ -94,7 +97,6 @@ contract Staking {
         if (totalSupply == 0) {
             return rewardPerTokenStored;
         }
-
         return
             rewardPerTokenStored +
             (rewardRate * (lastTimeRewardApplicable() - updatedAt) * 1e18) /

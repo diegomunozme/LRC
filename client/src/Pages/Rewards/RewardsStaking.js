@@ -1,16 +1,14 @@
-import { ethers } from "ethers";
+import { BigNumber, ethers } from "ethers";
 import artifact from "../../artifacts/contracts/Staking.sol/Staking.json";
 import React, { useState, useEffect } from "react";
 import classes from "./RewardsStaking.module.css";
 import StakingCard from "./StakingCard";
 import StakingInfo from "./StakingInfo";
 import hbtArtifact from "../../artifacts/contracts/HashbackToken.sol/HashBackToken.json";
-// StakingContract deployed to:  0x0C0b19086233BFD91bf67Db62D4B4B8419F41C1a 
-// Owner address:  0x08d8c5330D68e7c2E25B0252a30a5B6024b0a6e5 
-// HashbackToken:  0xD1227eEf8cA2d93Fde35df86408D6D8F66730393
-const CONTRACT_ADDRESS = "0x0C0b19086233BFD91bf67Db62D4B4B8419F41C1a";
-const HBT_ADDRESS = "0xD1227eEf8cA2d93Fde35df86408D6D8F66730393";
-const ownerAddress = "0x08d8c5330D68e7c2E25B0252a30a5B6024b0a6e5";
+
+const CONTRACT_ADDRESS = "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512";
+const HBT_ADDRESS = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
+const ownerAddress = "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266";
 const RewardsStaking = () => {
   // general
   const [provider, setProvider] = useState(undefined);
@@ -19,34 +17,31 @@ const RewardsStaking = () => {
   const [signerAddress, setSignerAddress] = useState(undefined);
   const [hbtContract, sethbtContract] = useState(undefined);
 
-  // assets
-  const [assetIds, setAssetIds] = useState([]);
-  const [assets, setAssets] = useState([]);
-
   // staking
   const [amount, setAmount] = useState(0);
   const [totalStaked, setTotalStaked] = useState(0);
   const [withdrawAmount, setWithdrawlAmount] = useState(0);
+  const [displayStaking, setDisplayStaking] = useState(false);
+
   useEffect(() => {
     const onLoad = async () => {
-      const provider = await new ethers.providers.Web3Provider(window.ethereum);
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
       setProvider(provider);
 
-      const contract = await new ethers.Contract(
+      const contract = new ethers.Contract(
         CONTRACT_ADDRESS,
-        artifact.abi
+        artifact.abi,
+        provider
       );
       setContract(contract);
 
-      const hbtContract = await new ethers.Contract(
+      const hbtContract = new ethers.Contract(
         HBT_ADDRESS,
         hbtArtifact.abi,
         provider
       );
       sethbtContract(hbtContract);
-
-      await hbtContract.balanceOf(signerAddress);
-      setTotalStaked(await hbtContract.balanceOf(signerAddress));
+      console.log("USe Effect Contract", contract);
     };
     onLoad();
   }, []);
@@ -66,16 +61,30 @@ const RewardsStaking = () => {
     const signer = await getSigner(provider);
     setSigner(signer);
 
+    //Signer Information
     const signerAddress = await signer.getAddress();
     setSignerAddress(signerAddress);
     console.log("SIGNER ADDRESS :", signerAddress);
+    console.log("provider: ", provider);
+    console.log("signer: ", signer);
+    console.log("contract: ", contract);
+
+    // Current Staking
+    const bn = await contract.balanceOf(ownerAddress);
+    console.log("hex: ", ethers.BigNumber.from(bn));
+    console.log(ethers.utils.arrayify(bn._hex)[0]);
+    console.log(bn.toString());
+    setTotalStaked(ethers.utils.arrayify(bn._hex)[0]);
+
+    //Getting the rewards earned by the users
+    // const re = await contract.connect(signer).getReward(); //getting the reward accumulated so far
+    // console.log("Earned Rewards", re);
   };
 
   const stake = async () => {
     await hbtContract.connect(signer).approve(contract.address, amount);
     contract.connect(signer).stake(amount);
-    console.log("Signer Address", signer.address)
-    console.log("staked Amount: ", await hbtContract.balanceOf(signer.address))
+    console.log("Signer Address", signer.address);
     setAmount(0);
   };
 

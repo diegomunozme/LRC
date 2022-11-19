@@ -24,26 +24,25 @@ const StakingCard = (props) => {
       ) : (
         <>
           <div className={classes.stakingInputs}>
-            <div>
-            <h1 style={{ fontSize: ".75", padding: "1rem", color: "#4D5358" }}>
-              Current Address: {props.signerAddress}
-              </h1>
-              <h1 style={{ fontSize: ".75", padding: "1rem", color: "#4D5358" }}>
-              Your Stake: {props.amount}
-            </h1>
+            <div className={classes.displayStaking}>
+              <h1>Your Stake: {props.amount}</h1>
+              <h1>Total Tokens Staked:{props.totalStaked} </h1>
             </div>
             <div style={{ display: "flex", padding: "1rem" }}>
               <Input
                 value={props.amount}
                 onChange={handleChange}
-                variant="outline"
+                variant="filled"
+                bg="rgba(255, 255, 255, 0.08)"
                 placeholder="HashBack Tokens"
-                bg="transparent"
                 focusBorderColor="green"
+                borderRightRadius="0px"
               />
               <Button
-                bg="transparent"
-                variant="outline"
+                // bg="transparent"
+                bg="rgba(255, 255, 255, 0.08)"
+                borderLeftRadius="0px"
+                variant="filled"
                 outline="green"
                 onClick={() => props.stake()}
               >
@@ -54,21 +53,20 @@ const StakingCard = (props) => {
           </div>
           <Divider />
           <div className={classes.displayRewards}>
-            <h1 style={{ display: "flex", padding: "1rem" }}>
-              Total Tokens Staked:{props.totalStaked}{" "}
-            </h1>
             <div style={{ display: "flex", padding: "1rem" }}>
               <Input
                 value={props.withdrawlAmount}
                 onChange={handleWithdrawl}
-                variant="outline"
+                variant="filled"
+                bg="rgba(255, 255, 255, 0.08)"
                 placeholder="HashBack Tokens"
-                bg="transparent"
                 focusBorderColor="green"
+                borderRightRadius="0px"
               />
               <Button
-                bg="transparent"
-                variant="outline"
+                bg="rgba(255, 255, 255, 0.08)"
+                borderLeftRadius="0px"
+                variant="filled"
                 outline="green"
                 onClick={() => props.withdraw()}
               >

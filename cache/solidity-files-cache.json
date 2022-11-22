@@ -185,8 +185,8 @@
       ]
     },
     "/Users/16036diego/Desktop/Desktop/Software-Development/Blockchain/LRC/contracts/Staking.sol": {
-      "lastModificationDate": 1668827310453,
-      "contentHash": "c78d65d24b5e77fcc4c8e69f67b8ae23",
+      "lastModificationDate": 1669074086360,
+      "contentHash": "6afea018ed5765b647a57bd8f52f0aa3",
       "sourceName": "contracts/Staking.sol",
       "solcConfig": {
         "version": "0.8.0",

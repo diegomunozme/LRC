@@ -2,9 +2,13 @@
 require("@nomiclabs/hardhat-waffle");
 require("@nomicfoundation/hardhat-toolbox");
 
-const ALCHEMY_API_KEY = "-S0QjiRRqIb62ksQWQ-oNhqAQVeY2Lie";
+//Pull this fron the Alchemy front end
+const ALCHEMY_API_KEY = "-uLMUxdZkzOXZ7pMpiWlYcLgRt7r5ooS";
 
-const GOERLI_PRIVATE_KEY = "63ddf53c3bac455897d065fe1ca7d3fa32eca463394166903838f66e4f14f6bd"
+//This is from meta mask and go to Account Details > Export Private Key
+// Beware: NEVER put real Ether into testing accounts
+const GOERLI_PRIVATE_KEY =
+  "63ddf53c3bac455897d065fe1ca7d3fa32eca463394166903838f66e4f14f6bd";
 module.exports = {
   solidity: {
     version: "0.8.0",

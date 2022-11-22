@@ -1,13 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import classes from "./StakingCard.module.css";
 import { Input, Button, Divider } from "@chakra-ui/react";
+import ButtonSwitcher from "./ButtonSwitcher";
 const StakingCard = (props) => {
   // The Stakeing Modal for this staking pool
   // things to go herep
 
-  const handleChange = (event) => props.setAmount(event.target.value);
-  const handleWithdrawl = (event) =>
-    props.setWithdrawlAmount(event.target.value);
   return (
     <div className={classes.stakingCard}>
       <div className={classes.cardContent}>
@@ -28,55 +26,12 @@ const StakingCard = (props) => {
               <h1>Your Stake: {props.amount}</h1>
               <h1>Total Tokens Staked:{props.totalStaked} </h1>
             </div>
-            <div style={{ display: "flex", padding: "1rem" }}>
-              <Input
-                value={props.amount}
-                onChange={handleChange}
-                variant="filled"
-                bg="rgba(255, 255, 255, 0.08)"
-                placeholder="HashBack Tokens"
-                focusBorderColor="green"
-                borderRightRadius="0px"
-              />
-              <Button
-                // bg="transparent"
-                bg="rgba(255, 255, 255, 0.08)"
-                borderLeftRadius="0px"
-                variant="filled"
-                outline="green"
-                onClick={() => props.stake()}
-              >
-                {" "}
-                Stake
-              </Button>
-            </div>
-          </div>
-          <Divider />
-          <div className={classes.displayRewards}>
-            <div style={{ display: "flex", padding: "1rem" }}>
-              <Input
-                value={props.withdrawlAmount}
-                onChange={handleWithdrawl}
-                variant="filled"
-                bg="rgba(255, 255, 255, 0.08)"
-                placeholder="HashBack Tokens"
-                focusBorderColor="green"
-                borderRightRadius="0px"
-              />
-              <Button
-                bg="rgba(255, 255, 255, 0.08)"
-                borderLeftRadius="0px"
-                variant="filled"
-                outline="green"
-                onClick={() => props.withdraw()}
-              >
-                {" "}
-                Withdraw
-              </Button>
-            </div>
+            {/* Not going to pass props in order to try and useContext hook */}
+            <ButtonSwitcher {...props} />
+
             <Divider orientation="vertical" />
             <h1 style={{ display: "flex", padding: "1rem" }}>
-              Total Tokens Earned To Date:
+              Total Tokens Earned To Date: {props.rewards}
             </h1>
           </div>
         </>

@@ -36,7 +36,8 @@ contract Staking {
     //from documentation, may delete later
     uint public lastUpdateTime;
     // Reward to be paid out per second
-    uint public rewardRate = 100;
+    uint public rewardRate = uint(1000);
+    // uint public rewardRate = uint(69)/uint(4200);
     // Sum of (reward rate * dt * 1e18 / total supply)
     uint public rewardPerTokenStored;
     // User address => rewardPerTokenStored

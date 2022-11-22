@@ -96,6 +96,8 @@
   outline: transparent solid 2px;
   border-width: 1px;
   border-color: transparent;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
 }
 .displayRewards {
   display: block;

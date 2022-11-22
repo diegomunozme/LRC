@@ -31,7 +31,7 @@ const StakingCard = (props) => {
 
             <Divider orientation="vertical" />
             <h1 style={{ display: "flex", padding: "1rem" }}>
-              Total Tokens Earned To Date: {props.rewards}
+              Reward Tokens Earned: {props.rewards}
             </h1>
           </div>
         </>

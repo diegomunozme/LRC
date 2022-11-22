@@ -5,9 +5,9 @@ import classes from "./RewardsStaking.module.css";
 import StakingCard from "./StakingCard";
 import StakingInfo from "./StakingInfo";
 import hbtArtifact from "../../artifacts/contracts/HashbackToken.sol/HashBackToken.json";
-const CONTRACT_ADDRESS = "0x5E037600Ed03235539E4E3951A9eBc2a40edD6A3";
-const HBT_ADDRESS = "0x035C5e1BD224894364e11Aa71282dfC632D928F3";
-const ownerAddress = "0x08d8c5330D68e7c2E25B0252a30a5B6024b0a6e5";
+const CONTRACT_ADDRESS = "0x3582490D34452132B0Ae35aC79f86157b90a8C71";
+const HBT_ADDRESS = "0xFa203f93dF38A4d01cBf510c1CD3935e56933590";
+// const ownerAddress = "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266";
 const RewardsStaking = () => {
   // general
   const [provider, setProvider] = useState(undefined);
@@ -76,36 +76,24 @@ const RewardsStaking = () => {
     console.log("This will now be total Staked: ", bn.toString());
     setTotalStaked(bn.toString());
 
-    //Getting the rewards earned by the users
+    //Sending the rewards earned by the users
     // const re = await contract.connect(signer).getReward(); //getting the reward accumulated so far
     // console.log("Earned Rewards", re);
 
     const rew = await contract.earned(signerAddress);
     console.log("rewards: ", rew);
-    setRewards(rew.toString());
-
-    //Working to display total transactions via ethers to avoid storing duplicate data
-    // let etherscanProvider = new ethers.providers.EtherscanProvider();
-    // etherscanProvider.getHistory(ownerAddress).then((history) => {
-    //   history.forEach((tx, index) => {
-    //     console.log(
-    //       `Transaction Amount: `,
-    //       ethers.utils.arrayify(tx.value._hex)[0],
-    //       ` Entire Obj Position: ${index}`,
-    //       tx
-    //     );
-    //   });
-    // });
+    setRewards("trial".toString());
   };
 
   const stake = async () => {
     await hbtContract.connect(signer).approve(contract.address, amount);
     contract.connect(signer).stake(amount);
+    console.log("Amount Being Staked: ", amount);
     console.log("Signer Address", signer.address);
     setAmount(0);
   };
 
-  const unStakeAll = async () => {
+  const unStakeAll = () => {
     setWithdrawlAmount(totalStaked);
   };
 

@@ -3,7 +3,7 @@ require("@nomiclabs/hardhat-waffle");
 require("@nomicfoundation/hardhat-toolbox");
 
 //Pull this fron the Alchemy front end
-const ALCHEMY_API_KEY = "-uLMUxdZkzOXZ7pMpiWlYcLgRt7r5ooS";
+const ALCHEMY_API_KEY = "hz6pTpHKaJ-upJmujEaLyRjIMo0jM6qS";
 
 //This is from meta mask and go to Account Details > Export Private Key
 // Beware: NEVER put real Ether into testing accounts

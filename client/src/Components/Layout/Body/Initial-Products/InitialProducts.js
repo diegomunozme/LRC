@@ -14,7 +14,7 @@ const InitialProducts = () => {
 
         {products.map((item) => (
           <div
-            onClick={() => openInNewTab("https://google.com")}
+            onClick={() => openInNewTab(item.website)}
             className={classes.Container}
           >
             <div className={classes.Circle}>

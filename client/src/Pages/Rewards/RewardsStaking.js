@@ -1,13 +1,17 @@
 import { BigNumber, ethers } from "ethers";
 import artifact from "../../artifacts/contracts/Staking.sol/Staking.json";
 import React, { useState, useEffect } from "react";
+import { collection, doc, getDocs } from "firebase/firestore";
+import { db } from "../../firebase/firebase";
 import classes from "./RewardsStaking.module.css";
 import StakingCard from "./StakingCard";
 import StakingInfo from "./StakingInfo";
 import hbtArtifact from "../../artifacts/contracts/HashbackToken.sol/HashBackToken.json";
-const CONTRACT_ADDRESS = "0x3582490D34452132B0Ae35aC79f86157b90a8C71";
-const HBT_ADDRESS = "0xFa203f93dF38A4d01cBf510c1CD3935e56933590";
-// const ownerAddress = "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266";
+const CONTRACT_ADDRESS = "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512";
+const HBT_ADDRESS = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
+const ownerAddress = "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266";
+
+const affiliateLinkRewards = 1 / 50;
 const RewardsStaking = () => {
   // general
   const [provider, setProvider] = useState(undefined);
@@ -22,6 +26,10 @@ const RewardsStaking = () => {
   const [allTokens, setAllTokens] = useState(0);
   const [withdrawAmount, setWithdrawlAmount] = useState(0);
   const [rewards, setRewards] = useState(0);
+
+  //Reward Distribution
+
+  const userAddress = [];
 
   useEffect(() => {
     const onLoad = async () => {
@@ -82,7 +90,7 @@ const RewardsStaking = () => {
 
     const rew = await contract.earned(signerAddress);
     console.log("rewards: ", rew);
-    setRewards("trial".toString());
+    setRewards(rew.toString());
   };
 
   const stake = async () => {
@@ -102,10 +110,34 @@ const RewardsStaking = () => {
     setWithdrawlAmount(0);
   };
 
+  const loggingUsers = async () => {
+    //getting entire user docs
+    const querySnapshot = await getDocs(collection(db, "users"));
+    const transferring= await hbtContract.connect(signer)
+    //transferring user docs into an array of addresses
+    querySnapshot.forEach((doc) => {
+      console.log(doc.id, "=>", doc.data().address);
+      userAddress.push(doc.data().address);
+    });
+
+    // console.log(userAddress);
+    // making sure all addresses are valid,
+    // and if they are then transferring affiliateLinkMultiplier * totalSpentInAffiliateLink
+    userAddress.forEach((address) => {
+      try {
+        console.log(ethers.utils.isAddress(address));
+        transferring.transfer(address, affiliateLinkRewards);
+      } catch (e) {
+        console.error("invalid Ethereum Address", e.messages);
+      }
+    });
+  };
+
   return (
     <div className={classes.componentFormatting}>
       <div className={classes.stakingLayout}>
         <StakingCard
+          loggingUsers={loggingUsers}
           totalStaked={totalStaked}
           withdraw={withdraw}
           setWithdrawlAmount={setWithdrawlAmount}

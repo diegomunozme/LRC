@@ -1,7 +1,7 @@
 /** @type import('hardhat/config').HardhatUserConfig */
-require("@nomiclabs/hardhat-waffle");
 require("@nomicfoundation/hardhat-toolbox");
-
+require("@nomicfoundation/hardhat-chai-matchers");
+require("@nomiclabs/hardhat-ethers");
 //Pull this fron the Alchemy front end
 const ALCHEMY_API_KEY = "hz6pTpHKaJ-upJmujEaLyRjIMo0jM6qS";
 

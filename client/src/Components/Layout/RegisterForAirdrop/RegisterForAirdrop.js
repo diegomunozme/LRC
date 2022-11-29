@@ -3,11 +3,15 @@ import Card from "../../UI/Modal/Card/Card";
 import classes from "./RegisterForAirdrop.module.css";
 import { Input, Button, Divider } from "@chakra-ui/react";
 import { registerForAirdrop } from "../../../firebase/firebase";
-const RegisterForAirdrop = (props) => {
-  const [address, setAddress] = useState(null);
+const AirdropRegister = (props) => {
+  const [address, setAddress] = useState("");
 
   const addressChangeHandler = (e) => {
     setAddress(e.target.value);
+  };
+
+  const airdropClearance = () => {
+    setAddress("");
   };
 
   return (
@@ -34,7 +38,10 @@ const RegisterForAirdrop = (props) => {
               variant="outline"
               outline="green"
               focusBorderColor="green"
-              onClick={registerForAirdrop}
+              onClick={() => {
+                registerForAirdrop(address);
+                airdropClearance();
+              }}
             >
               {" "}
               Register
@@ -46,4 +53,4 @@ const RegisterForAirdrop = (props) => {
   );
 };
 
-export default RegisterForAirdrop;
+export default AirdropRegister;

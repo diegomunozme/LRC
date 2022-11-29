@@ -73,12 +73,13 @@ export const logInWithEmailAndPassword = async (email, password) => {
   }
 };
 
-export const registerWithEmailAndPassword = async (name, email, password) => {
+export const registerWithAddressEmailAndPassword = async (address ,name, email, password) => {
   try {
     const res = await createUserWithEmailAndPassword(auth, email, password);
     const user = res.user;
     await addDoc(collection(db, "users"), {
       uid: user.uid,
+      address: address,
       name,
       authProvider: "local",
       email,

@@ -5,7 +5,7 @@ import { ethers, providers } from "ethers";
 import { ReactComponent as BlockchainSVG } from "../../assets/images/trial.svg";
 import classes from "./Rewards.module.css";
 import RewardsStaking from "./RewardsStaking";
-import RegisterForAirdrop from "../../Components/Layout/RegisterForAirdrop/RegisterForAirdrop";
+import AirdropRegister from "../../Components/Layout/RegisterForAirdrop/RegisterForAirdrop";
 
 const Rewards = () => {
   const [blockchain, setBlockchain] = useState(false);
@@ -22,7 +22,7 @@ const Rewards = () => {
   return (
     <div className={classes.rewardsWrapper}>
       {blockchain && (
-        <RegisterForAirdrop registerModuleHandler={registerModuleHandler} />
+        <AirdropRegister registerModuleHandler={registerModuleHandler} />
       )}
       ;
       <div className={classes.contentTop}>

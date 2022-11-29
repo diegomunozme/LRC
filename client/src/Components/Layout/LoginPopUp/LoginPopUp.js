@@ -11,7 +11,11 @@ const LoginPopUp = (props) => {
       <Card className={classes.modal}>
         <div className={classes.content}>
           {/* Lets see what happens here */}
-          <Login handleSetRegister={props.handleSetRegister} />
+          <Login
+            handleSetRegister={props.handleSetRegister}
+            handleSetReset={props.handleSetReset}
+            resetModuleHandler={props.resetModuleHandler}
+          />
         </div>
       </Card>
     </div>

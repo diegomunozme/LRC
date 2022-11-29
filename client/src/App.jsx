@@ -9,15 +9,17 @@ import RegisterModal from "./Components/Layout/RegisterModal/RegisterModal";
 import Explore from "./Pages/Explore/Explore";
 import Rewards from "./Pages/Rewards/Rewards";
 import SearchPopUp from "./Components/Layout/SearchPopUp/SearchPopUp";
+import ResetModal from "./Components/Layout/Header/Firebase-UI/ResetModal";
 
 function App() {
   const [login, setLogin] = useState(false);
   const [register, setRegister] = useState(false);
   const [search, setSearch] = useState(false);
-
+  const [reset, setReset] = useState(false);
   const handleSetLogin = (e) => {
     e.preventDefault();
     setRegister(false);
+    setReset(false);
     setLogin(true);
   };
 
@@ -25,6 +27,16 @@ function App() {
     e.preventDefault();
     setLogin(false);
     setRegister(true);
+  };
+
+  const handleSetReset = (e) => {
+    e.preventDefault();
+    setLogin(false);
+    setReset(true);
+  };
+
+  const resetModuleHandler = () => {
+    setReset(false);
   };
 
   const loginModuleHandler = () => {
@@ -52,6 +64,8 @@ function App() {
           <LoginPopUp
             loginModuleHandler={loginModuleHandler}
             handleSetRegister={handleSetRegister}
+            handleSetReset={handleSetReset}
+            resetModuleHandler={resetModuleHandler}
           />
         )}
         ;
@@ -59,6 +73,13 @@ function App() {
           <RegisterModal
             handleSetLogin={handleSetLogin}
             registerModuleHandler={registerModuleHandler}
+          />
+        )}
+        ;
+        {reset && (
+          <ResetModal
+            handleSetLogin={handleSetLogin}
+            resetModuleHandler={resetModuleHandler}
           />
         )}
         ;{search && <SearchPopUp searchModuleHandler={searchModuleHandler} />};

@@ -23,11 +23,7 @@ const Login = (props) => {
     //if (user) navigate("./dashboard");
   }, [user, loading]);
 
-  const trial = () => {
-    console.log("e");
-  };
-
-  return (
+    return (
     <div className={classes.login}>
       <div className={classes.login__container}>
         <header className={classes.header}>
@@ -64,11 +60,18 @@ const Login = (props) => {
           />
           Login With Google
         </button>
-        <button className={classes.login__metaMask} onClick={signInWithGoogle}>
+        {/* <button className={classes.login__metaMask} onClick={signInWithGoogle}>
           Connect MetaMask
-        </button>
+        </button> */}
         <div>
-          <Link to="/reset">Forgot Password</Link>
+          {/* I should make this an automatic recovery onClick email in case users
+          forget */}
+          <div
+            className={classes.linkToOtherModals}
+            onClick={props.handleSetReset}
+          >
+            Forgot Password
+          </div>
         </div>
         <div>
           Don't have an account?
@@ -77,7 +80,13 @@ const Login = (props) => {
             // onClick={props.handleSetRegister}
           >
             {" "}
-            <u onClick={props.handleSetRegister}>Register now.</u>
+            <div
+              onClick={props.handleSetRegister}
+              className={classes.linkToOtherModals}
+              to="/#"
+            >
+              Register now.
+            </div>
           </div>
         </div>
       </div>

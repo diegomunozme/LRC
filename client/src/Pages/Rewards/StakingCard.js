@@ -8,6 +8,9 @@ const StakingCard = (props) => {
 
   return (
     <div className={classes.stakingCard}>
+      <button className={classes.cardButton} onClick={props.loggingUsers}>
+        Logging Users
+      </button>
       <div className={classes.cardContent}>
         <div>
           <h1 className={classes.cardHeader}>{props.cardHeader}</h1>

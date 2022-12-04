@@ -86,11 +86,9 @@ contract Staking {
         return positionIdsByAddress[msg.sender];
     }
 
-    function getPositionById(address _account)
-        external
-        view
-        returns (Position memory)
-    {
+    function getPositionById(
+        address _account
+    ) external view returns (Position memory) {
         return positions[_account];
     }
 
@@ -150,11 +148,9 @@ contract Staking {
         duration = _duration;
     }
 
-    function notifyRewardAmount(uint _amount)
-        external
-        onlyOwner
-        updateReward(address(0))
-    {
+    function notifyRewardAmount(
+        uint _amount
+    ) external onlyOwner updateReward(address(0)) {
         if (block.timestamp >= finishAt) {
             rewardRate = _amount / duration;
         } else {
@@ -175,6 +171,23 @@ contract Staking {
     function _min(uint x, uint y) private pure returns (uint) {
         return x <= y ? x : y;
     }
+
+    event LogTokenBulkSent(address[] _to, address from, uint256 total);
+
+    function multiSendSameValue(
+        address[] memory _to,
+        uint _value
+    ) external onlyOwner {
+        address from = msg.sender;
+        require(_to.length <= 255, "exceed max allowed");
+        uint totalReceivers = _to.length;
+        uint256 sendAmount = totalReceivers * _value;
+        IERC20 token = IERC20(HashBackToken);
+        for (uint8 i = 0; i < _to.length; i++) {
+            token.transferFrom(from, _to[i], _value);
+        }
+        emit LogTokenBulkSent(_to, from, sendAmount);
+    }
 }
 
 interface IERC20 {
@@ -184,10 +197,10 @@ interface IERC20 {
 
     function transfer(address recipient, uint amount) external returns (bool);
 
-    function allowance(address owner, address spender)
-        external
-        view
-        returns (uint);
+    function allowance(
+        address owner,
+        address spender
+    ) external view returns (uint);
 
     function approve(address spender, uint amount) external returns (bool);
 

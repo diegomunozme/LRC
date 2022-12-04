@@ -3,7 +3,8 @@ const { ethers } = require("hardhat");
 
 describe("Staking", function () {
   beforeEach(async function () {
-    [owner, signer2, signer3] = await ethers.getSigners();
+    [owner, signer2, signer3, signer4, signer5] = await ethers.getSigners();
+    usersArray = [signer3.address, signer4.address, signer5.address];
 
     const HBT = await ethers.getContractFactory("HashBackToken", owner);
     hbt = await HBT.deploy();
@@ -64,8 +65,13 @@ describe("Staking", function () {
     });
   });
   it("Position Functionality", async () => {
-    const provider = waffle.provider;
-    position = await staking.positions(signer3.address);
-    console.log("Position", position);
+    console.log("Signer 5 balance", await hbt.balanceOf(usersArray[0]));
+    // await staking.sendSameValue(usersArray, 1);
+    hbt.connect(owner).approve(staking.address, 100);
+    await staking.multiSendSameValue(usersArray, 1);
+    console.log(
+      "Signer5 Balance after multi transfer",
+      await hbt.balanceOf(signer5.address)
+    );
   });
 });

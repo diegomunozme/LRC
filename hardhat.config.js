@@ -1,8 +1,7 @@
 /** @type import('hardhat/config').HardhatUserConfig */
-require("@nomicfoundation/hardhat-toolbox");
-require("@nomicfoundation/hardhat-chai-matchers");
+require("@nomiclabs/hardhat-waffle");
 require("@nomiclabs/hardhat-ethers");
-//Pull this fron the Alchemy front end
+//Pull this fron the Alchemy front endhbtContract.connect(signer).approve(contract.address, amount)
 const ALCHEMY_API_KEY = "hz6pTpHKaJ-upJmujEaLyRjIMo0jM6qS";
 
 //This is from meta mask and go to Account Details > Export Private Key

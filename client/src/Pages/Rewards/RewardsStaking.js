@@ -1,7 +1,12 @@
 import { BigNumber, ethers } from "ethers";
 import artifact from "../../artifacts/contracts/Staking.sol/Staking.json";
 import React, { useState, useEffect } from "react";
-import { collection, doc, getDocs } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDocs,
+  waitForPendingWrites,
+} from "firebase/firestore";
 import { db } from "../../firebase/firebase";
 import classes from "./RewardsStaking.module.css";
 import StakingCard from "./StakingCard";
@@ -11,7 +16,7 @@ const CONTRACT_ADDRESS = "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512";
 const HBT_ADDRESS = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
 const ownerAddress = "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266";
 
-const affiliateLinkRewards = 1 / 50;
+const affiliateLinkRewards = ".000000000000000001";
 const RewardsStaking = () => {
   // general
   const [provider, setProvider] = useState(undefined);
@@ -91,6 +96,15 @@ const RewardsStaking = () => {
     const rew = await contract.earned(signerAddress);
     console.log("rewards: ", rew);
     setRewards(rew.toString());
+
+    // lets try sending some HBT
+    // await send_token(
+    //   HBT_ADDRESS,
+    //   provider,
+    //   affiliateLinkRewards,
+    //   "0x70997970C51812dc3A010C7d01b50e0d17dc79C8".toString(),
+    //   ownerAddress
+    // );
   };
 
   const stake = async () => {
@@ -111,26 +125,31 @@ const RewardsStaking = () => {
   };
 
   const loggingUsers = async () => {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    let signer = provider.getSigner();
     //getting entire user docs
     const querySnapshot = await getDocs(collection(db, "users"));
-    const transferring= await hbtContract.connect(signer)
+    const transferring = await hbtContract.connect(signer);
     //transferring user docs into an array of addresses
     querySnapshot.forEach((doc) => {
       console.log(doc.id, "=>", doc.data().address);
       userAddress.push(doc.data().address);
     });
 
-    // console.log(userAddress);
-    // making sure all addresses are valid,
-    // and if they are then transferring affiliateLinkMultiplier * totalSpentInAffiliateLink
+    // // console.log(userAddress);
+    // // making sure all addresses are valid,
+    // // and if they are then transferring affiliateLinkMultiplier * totalSpentInAffiliateLink
     userAddress.forEach((address) => {
       try {
         console.log(ethers.utils.isAddress(address));
-        transferring.transfer(address, affiliateLinkRewards);
       } catch (e) {
         console.error("invalid Ethereum Address", e.messages);
       }
     });
+    await hbtContract.connect(signer).approve(contract.address, "10");
+    await contract.connect(signer).multiSendSameValue(userAddress, "1");
+
+    alert("sent Tokens to users");
   };
 
   return (

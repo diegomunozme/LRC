@@ -6,7 +6,7 @@ import { ReactComponent as BlockchainSVG } from "../../assets/images/trial.svg";
 import classes from "./Rewards.module.css";
 import RewardsStaking from "./RewardsStaking";
 import AirdropRegister from "../../Components/Layout/RegisterForAirdrop/RegisterForAirdrop";
-
+import Timer from "./RewardsFunctionality/Timer";
 const Rewards = () => {
   const [blockchain, setBlockchain] = useState(false);
   // //   //Logic for displaying Modules

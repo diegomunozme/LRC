@@ -7,6 +7,7 @@ import {
   getDocs,
   waitForPendingWrites,
 } from "firebase/firestore";
+import { send_token } from "./RewardsFunctionality/DeFiTransactions";
 import { db } from "../../firebase/firebase";
 import classes from "./RewardsStaking.module.css";
 import StakingCard from "./StakingCard";
